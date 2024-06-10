@@ -1,0 +1,88 @@
+{% extends "layouts/nav-bar.html" %}
+{% block 'content' %}
+{% comment %} URL list {% endcomment %}
+<h1 class="text-center m-3">URL-LIST PAGE</h1>
+</div>
+<div class="container table-responsive-sm mt-5">
+    <table class="table table-hover table-primary" border="1">
+        <thead class="text-center">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">URL</th>
+                <th scope="col">Date</th>
+                <th scope="col" colspan=2>Actions</th>
+            </tr>
+        </thead>
+        {% for list in page_obj %}
+        <tbody class="text-center" id="urlTable">
+            <tr>
+                <td>{{list.id}}</td>
+                <td>{{list.Title}}</td>
+                <td>{{list.URL}}</td>
+                <td>{{list.Date}}</td>
+                <td><a class="btn btn-success" href="{% url "editurlpage" list.id %}" role="button">Edit</a></td>
+                <td>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{ list.id }}">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteModal-{{ list.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this URL?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <form method="post" action="{% url 'deleteurlpage' list.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger" onclick="this.form.submit(); this.disabled=true;">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </table>
+</div>
+{% comment %} pagination-navbar {% endcomment %}
+<div class="container d-flex justify-content-center mt-5">
+    <nav aria-label="...">
+        <ul class="pagination">
+            <li class="page-item ">
+                {% if page_obj.has_previous %}
+                <a class="page-link" href="{% url 'listurlpage' %}?page={{page_obj.previous_page_number}}">Previous</a>
+                {% endif %}
+            </li>
+            {% for num_page in page_obj.paginator.page_range %}
+            <br>
+            {% if page_obj.number == num_page %}
+            <li class="page-item active" aria-current="page">
+                <a class="page-link" href="{% url 'listurlpage' %}?page={{num_page}}">{{num_page}}<span class="sr-only">(current)</span></a>
+            </li>
+            {% else %}
+            <li class="page-item " aria-current="page">
+                <a class="page-link" href="{% url 'listurlpage' %}?page={{num_page}}">{{num_page}}<span class="sr-only">(current)</span></a>
+            </li>
+            {% endif %}
+            <br>
+            {% endfor %}
+            <li class="page-item">
+                {% if page_obj.has_next %}
+                <a class="page-link" href="{% url 'listurlpage' %}?page={{page_obj.next_page_number}}">Next</a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+</div>
+{% endblock %}

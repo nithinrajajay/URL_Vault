@@ -1,0 +1,13 @@
+{% extends "layouts/nav-bar.html" %}
+{% block 'content' %}
+{% load crispy_forms_tags %}
+<div class="container d-flex justify-content-center mt-5">
+    <form class="form-group" action="" method="post">
+        <h1>ADD-BOOKMARKS</h1>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="btn btn-primary btn-lg btn-block" type="submit" value="Add"/>
+      </form>   
+</div>
+{% endblock %}
+

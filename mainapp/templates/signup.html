@@ -1,0 +1,15 @@
+{% extends "layouts/nav-bar.html" %} 
+{% block 'content' %} 
+{% load crispy_forms_tags %}
+
+<div class="container d-flex justify-content-center mt-2">
+  <div class="fixed-width-container">
+    <form class="form-group" action="" method="post">
+      <h1>SIGNUP-PAGE</h1>
+      {% csrf_token %} {{ form|crispy }}
+      <input class="btn btn-primary btn-lg btn-block" type="submit" value="SignUp" />
+    </form>
+  </div>
+</div>
+
+{% endblock %}

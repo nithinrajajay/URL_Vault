@@ -1,0 +1,14 @@
+{% extends "layouts/nav-bar.html" %}
+{% block 'content' %}
+<div class="container d-flex justify-content-center mt-5">
+    <form class="form-group" action="" method="post">
+        <h1>SIGNOUT-PAGE</h1>
+        {% csrf_token %}
+        <p>you are Signed in as <b>{{user.username}}</b></p>
+        <input class="btn btn-danger" type="submit" value="SignOut">
+    </form>
+</div>
+{% endblock  %}
+
+
+

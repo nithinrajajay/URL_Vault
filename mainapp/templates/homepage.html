@@ -1,0 +1,28 @@
+{% extends "layouts/nav-bar.html" %}
+{% block 'content' %}
+<div class='container'>
+    <div class='row mt-5'>
+        {% comment %} intorduction about page {% endcomment %}
+            <div class='col-6 text-center'>
+                <h1>URL Vault</h1>
+                <p>At the heart of this project lies the seamless bookmarking experience. Users can effortlessly save URLs with a single click, capturing the essence of a webpage for future reference. 
+                Whether it's a captivating news article, a recipe for a mouthwatering dish, or a tutorial on mastering a new skill, the bookmarking process is intuitive and efficient.</p>
+                <p>The URL management project is a dynamic endeavor aimed at creating a user-friendly web application that revolutionizes the way users interact with online content. 
+                In an era where information overload is the norm, this project seeks to empower users by providing efficient tools for organizing, saving, and retrieving their favorite websites.
+                Whether it's thought-provoking articles, entertaining blog posts, or valuable reference materials, users can now bookmark URLs and access them effortlessly, all within a cohesive digital ecosystem.</p>
+            
+            </div>
+    
+            <div class="col-6 card text-center mt-5 pt-3">
+                <div class="card-header"><h3>Try Our Website!</h3></div>
+                <div class="card-body mt-4">
+                <h5 class="card-title">Lets create an account</h5>
+                <a class="col-10 btn btn-primary" href="{% url "signuppage" %}" role="button">SignUp</a>
+                <p class='col-12 text-center mt-3'>Please sign in if you already have an account?</p>
+                <a class="col-3 btn btn-link " href="{% url "signinpage" %}" role="button">SignIn</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}
+

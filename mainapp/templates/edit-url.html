@@ -1,0 +1,16 @@
+{% extends "layouts/nav-bar.html" %}
+{% block 'content' %}
+{% load crispy_forms_tags %}
+<div class="container d-flex justify-content-center mt-5">
+    <form method="post" class="form">
+        <h1>UPDATE-PAGE</h1>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Add</button>
+      </form>
+</div>
+{% endblock  %}
+
+
+
+
